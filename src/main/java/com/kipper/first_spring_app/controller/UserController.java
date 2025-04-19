@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -69,4 +70,37 @@ public class UserController {
         userRepository.deleteById(id);
         return ResponseEntity.ok("Usuário deletado com sucesso.");
     }
-}
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody User user) {
+        Optional<User> optionalUser = userRepository.findById(id);
+        if (optionalUser.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Usuário com ID " + id + " não encontrado.");
+        }
+    
+        User existingUser = optionalUser.get();
+    
+        if (user.getName() != null) {
+            existingUser.setName(user.getName());
+        }
+    
+        if (user.getEmail() != null) {
+            existingUser.setEmail(user.getEmail());
+        }
+    
+        if (user.getCPF() != null) {
+            String cpf = user.getCPF();
+        
+            if (!cpf.matches("\\d{11}")) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                        .body("CPF deve conter apenas 11 dígitos numéricos.");
+            }
+        
+            existingUser.setCPF(cpf);
+        }
+    
+        User updatedUser = userRepository.save(existingUser);
+        return ResponseEntity.ok(updatedUser);
+    }
+}   
