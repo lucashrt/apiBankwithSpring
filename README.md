@@ -20,7 +20,7 @@ Este projeto é uma aplicação de API REST construída com **Spring Boot**, uti
 - Spring Boot 3.4.4
 - Spring Web
 - Spring Data JPA
-- PostgresSQL
+- PostgreSQL
 - Maven
 - Insomnia (Testes)
 
