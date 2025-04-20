@@ -2,8 +2,6 @@
 
 Este projeto é uma aplicação de API REST construída com **Spring Boot**, utilizando práticas modernas de desenvolvimento para simular operações bancárias, como gerenciamento de contas, instituições, usuários e transações.
 
-🔗 Repositório no GitHub: [lucashrt/apiBankwithSpring](https://github.com/lucashrt/apiBankwithSpring)
-
 ---
 
 ## 🚀 Funcionalidades
@@ -18,7 +16,7 @@ Este projeto é uma aplicação de API REST construída com **Spring Boot**, uti
 
 ## 🛠️ Tecnologias Utilizadas
 
-- Java 24
+- Java 21
 - Spring Boot 3.4.4
 - Spring Web
 - Spring Data JPA
@@ -51,6 +49,7 @@ first-spring-app
 - `GET /users/all` – Lista todos os usuários
 - `GET /users/search/{id}` – Lista um usuário específico
 - `POST /users/create` – Cria um novo usuário
+- `PUT /users/update/{id}` - Atualiza um usuário
 - `DELETE /users/delete/{id}` - Deleta um usuário
 
 ### Contas
